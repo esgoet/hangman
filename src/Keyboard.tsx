@@ -38,14 +38,17 @@ type KeyboardProps = {
 
 export function Keyboard({ disabled = false, activeLetters, inactiveLetters, addGuessedLetter} : KeyboardProps) {
   return (
-  <div style={{
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(75px, 1fr))',
-    gap: '.5rem',
-  }}>
-    {KEYS.map(key => {
-        const isActive = activeLetters.includes(key)
-        const isInactive = inactiveLetters.includes(key)
+    <div
+    //   style={{
+    //     display: "grid",
+    //     gridTemplateColumns: "repeat(auto-fit, minmax(75px, 1fr))",
+    //     gap: ".5rem",
+    //   }}
+      className="w-full grid grid-cols-[repeat(auto-fit,_minmax(75px,_1fr))] gap-[0.5rem]"
+    >
+      {KEYS.map((key) => {
+        const isActive = activeLetters.includes(key);
+        const isInactive = inactiveLetters.includes(key);
         return (
           <button
             onClick={() => addGuessedLetter(key)}
@@ -58,9 +61,8 @@ export function Keyboard({ disabled = false, activeLetters, inactiveLetters, add
             {key}
           </button>
         );
-        })}
-
-  </div>
-  )
+      })}
+    </div>
+  );
 }
 

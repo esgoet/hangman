@@ -70,28 +70,37 @@ function App() {
 
   return (
     <div
-      style={{
-        maxWidth: "800px",
-        display: "flex",
-        flexDirection: "column",
-        gap: "2rem",
-        margin: "0 auto",
-        alignItems: "center",
-      }}
+      className="m-8 flex flex-col sm:flex-row gap-20 items-center justify-items-center justify-center align-center"
     >
-      <div
-        style={{
-          fontSize: "2rem",
-          textAlign: "center",
-        }}
-      >
-        {isWinner && "Winner! Refresh to try again."}
-        {isLoser && "Nice try. Refresh to try again."}
+      <div className="flex gap-8 flex-col ">
+        <div
+          // style={{
+          //   fontSize: "2rem",
+          //   textAlign: "center",
+          // }}
+          className="text-8 text-center h-[30px]"
+        >
+          {isWinner && "Winner! Refresh to try again."}
+          {isLoser && "Nice try. Refresh to try again."}
+        </div>
+        <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
       </div>
-      <HangmanDrawing numberOfGuesses={incorrectLetters.length}/>
-      <HangmanWord reveal={isLoser} guessedLetters={guessedLetters} wordToGuess={wordToGuess}/>
-      <div style={{ alignSelf: "stretch" }}>
-        <Keyboard disabled={isWinner || isLoser} activeLetters={guessedLetters.filter(letter => wordToGuess.includes(letter))} inactiveLetters={incorrectLetters} addGuessedLetter={addGuessedLetter}/>
+
+      <div className="flex gap-8 flex-col w-2/5 ">
+        <HangmanWord
+          reveal={isLoser}
+          guessedLetters={guessedLetters}
+          wordToGuess={wordToGuess}
+        />
+
+        <Keyboard
+          disabled={isWinner || isLoser}
+          activeLetters={guessedLetters.filter((letter) =>
+            wordToGuess.includes(letter)
+          )}
+          inactiveLetters={incorrectLetters}
+          addGuessedLetter={addGuessedLetter}
+        />
       </div>
     </div>
   );
